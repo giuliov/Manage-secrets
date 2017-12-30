@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PasswordGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "-l 20 -n 20 --hideindex"
+    }
+  }
+}

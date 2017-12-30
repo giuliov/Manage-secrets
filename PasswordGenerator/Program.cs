@@ -14,10 +14,23 @@ namespace PasswordGenerator
             var options = new Options();
             if (CommandLine.Parser.Default.ParseArgumentsStrict(args, options))
             {
-                var freq = LoadFrequencies("manzoni-cap1-frequencies.txt");
+                var freq = LoadFrequencies(options.FrequencyFile);
+
+                string format = "{0} ";
+                if (options.NumPassword < 10)
+                    format = "{0} ";
+                else if (options.NumPassword < 100)
+                    format = "{0:00} ";
+                else
+                    format = "{0:000} ";
+
                 for (int i = 0; i < options.NumPassword; i++)
                 {
                     string pass = CreatePassword(options.PasswordLength, freq.Set, freq.Map);
+                    if (!options.HideIndex)
+                    {
+                        Console.Write(format, i + 1);
+                    }
                     Console.WriteLine(pass);
                 }
             }
